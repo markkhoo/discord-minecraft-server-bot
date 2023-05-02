@@ -1,4 +1,4 @@
 import { Command } from "./types/Command";
-import { Hello } from "./commands/Hello";
+import { Ping } from "./commands/Ping";
 
-export const Commands: Command[] = [Hello];
+export const Commands: Command[] = [Ping];
