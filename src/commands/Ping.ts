@@ -16,10 +16,9 @@ export const Ping: Command = {
     ],
     run: async (client: Client, interaction: CommandInteraction) => {
         const message = interaction.options.get('bingus')
-        console.log(message)
 
         await interaction.reply({
-            // ephemeral: true,
+            ephemeral: true,
             content: message ? String(message.value) : `Pong!`
         });
     }

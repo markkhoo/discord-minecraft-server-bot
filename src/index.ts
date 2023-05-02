@@ -1,5 +1,6 @@
 import env from './config/environment';
-import { Client, Events, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
+import { rcon } from './setRCON';
 import interactionCreate from "./listeners/interactionCreate";
 import ready from "./listeners/ready";
 
@@ -11,3 +12,5 @@ ready(client);
 interactionCreate(client);
 
 client.login(env.token);
+
+rcon.connect().catch(console.error);
