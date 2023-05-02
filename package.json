@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "tsc -w",
+    "start": "nodemon --exec ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.1",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "discord.js": "^14.10.2",
+    "dotenv": "^16.0.3",
+    "rcon-client": "^4.2.3"
+  }
+}
