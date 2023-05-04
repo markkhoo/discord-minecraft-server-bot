@@ -4,9 +4,9 @@ import { Command } from "../types/Command";
 import { rcon, verifyConnection } from '../setRCON';
 import env from '../config/environment';
 
-export const PlayerAdd: Command = {
-    name: "add",
-    description: "Adds a minecraft username to the allowed players in the Minecraft Server",
+export const PlayerRemove: Command = {
+    name: "remove",
+    description: "Removes a minecraft username on the allowed players in the Minecraft Server",
     type: ApplicationCommandType.ChatInput,
     options: [
         {
@@ -46,6 +46,8 @@ export const PlayerAdd: Command = {
             });
         }
 
+        if (env.superRoles.length === 0) isSuperUser = true;
+
         if (!isSuperUser) {
             await interaction.reply({
                 content: "You do not have permission to use this command!",
@@ -57,7 +59,7 @@ export const PlayerAdd: Command = {
         const userData = interaction.options.get('player');
         const user = String(userData.value);
 
-        const res = await rcon.send(`whitelist add ${user}`).catch(console.error);
+        const res = await rcon.send(`whitelist remove ${user}`).catch(console.error);
 
         await interaction.reply({
             ephemeral: true,
