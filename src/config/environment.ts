@@ -7,4 +7,5 @@ export default {
   rconHost: process.env.RCON_HOST ?? 'localhost',
   rconPass: process.env.RCON_PASS ?? 'password',
   rconPort: Number(process.env.RCON_PORT) ?? 25575,
+  superRoles: (process.env.SUPER_ROLE_IDS).split(',') ?? [],
 }

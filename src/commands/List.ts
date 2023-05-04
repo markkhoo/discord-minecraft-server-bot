@@ -12,8 +12,10 @@ export const List: Command = {
 
         if (!connectStatus) {
             await interaction.reply({
-                content: "NOT CONNECTED to Minecraft Server!"
+                content: "NOT CONNECTED to Minecraft Server!",
+                ephemeral: true,
             });
+            return;
         }
 
         const res = await rcon.send("whitelist list").catch(console.error);
