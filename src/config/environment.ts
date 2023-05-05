@@ -6,6 +6,7 @@ export default {
   token: process.env.DISCORD_TOKEN ?? '',
   rconHost: process.env.RCON_HOST ?? 'localhost',
   rconPass: process.env.RCON_PASS ?? 'password',
-  rconPort: Number(process.env.RCON_PORT) ?? 25575,
-  superRoles: (process.env.SUPER_ROLE_IDS).split(',') ?? [],
+  rconPort: process.env.RCON_PORT ? Number(process.env.RCON_PORT) : 25575,
+  superRoles: process.env.SUPER_ROLE_IDS ? (process.env.SUPER_ROLE_IDS).split(',') : [],
+  healthPort: process.env.HEALTH_PORT ? Number(process.env.HEALTH_PORT) : 5000,
 }

@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  discord-bot:
+    build: .
+    container_name: discord-bot
+    ports:
+      - "5000:5000"
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
