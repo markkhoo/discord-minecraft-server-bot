@@ -1,11 +1,24 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
+import { cleanEnv, makeValidator, num } from 'envalid'
 
-export default {
-  appID: process.env.DISCORD_APP_ID ?? '',
-  token: process.env.DISCORD_TOKEN ?? '',
-  rconHost: process.env.RCON_HOST ?? 'localhost',
-  rconPass: process.env.RCON_PASS ?? 'password',
-  rconPort: Number(process.env.RCON_PORT) ?? 25575,
-  superRoles: (process.env.SUPER_ROLE_IDS).split(',') ?? [],
-}
+const notEmptyString = makeValidator(x => {
+  if (typeof x !== 'string' || x.length === 0) {
+    throw new Error('Expected non-empty string')
+  }
+  return x
+});
+
+const validateSuperRoles = makeValidator(x => {
+  if (typeof x !== 'string' || x.length === 0) {
+    throw new Error('Expected non-empty string')
+  }
+  return x.split(',');
+});
+
+export default cleanEnv(process.env, {
+  DISCORD_TOKEN: notEmptyString(),
+  RCON_HOST:  notEmptyString(),
+  RCON_PASS: notEmptyString(),
+  RCON_PORT: num({ default: 25575 }),
+  SUPER_ROLE_IDS: validateSuperRoles({ default: [] }),
+});

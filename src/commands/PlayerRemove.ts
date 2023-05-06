@@ -38,15 +38,15 @@ export const PlayerRemove: Command = {
             return;
         }
 
-        if (env.superRoles.length === 0) {
+        if (env.SUPER_ROLE_IDS.length === 0) {
             isSuperUser = true;
         } else {
             interaction.member.roles.cache.map(role => {
-                if (env.superRoles.includes(role.id)) isSuperUser = true;
+                if (env.SUPER_ROLE_IDS.includes(role.id)) isSuperUser = true;
             });
         }
 
-        if (env.superRoles.length === 0) isSuperUser = true;
+        if (env.SUPER_ROLE_IDS.length === 0) isSuperUser = true;
 
         if (!isSuperUser) {
             await interaction.reply({
