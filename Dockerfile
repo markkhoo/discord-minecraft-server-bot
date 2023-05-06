@@ -10,11 +10,8 @@ COPY package*.json ./
 # Copy the source code to the working directory
 COPY . .
 
-# Install TypeScript globally
-RUN npm install -g typescript
-
 # Install the required dependencies and compile the TypeScript code
-RUN npm ci && tsc 
+RUN npm ci && npm run build
 
 # Install curl for health check
 RUN apt-get update && apt-get install -y curl
