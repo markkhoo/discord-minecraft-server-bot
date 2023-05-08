@@ -37,6 +37,8 @@ Navigate to this repository in your CLI and run the command  `npm ci` to install
 ### Docker Deployment
 Make sure you have [Docker](https://www.docker.com/) installed if you want to deploy this bot in a docker container. A `docker-compose.yml` file is provided in this repository. Navigate to this repository in your CLI and run the command  `docker-compose up -d` to build a docker container and run the bot.
 
+### Docker Hub (WIP)
+*TO DO*
 
 ## Discord Commands
 
