@@ -1,8 +1,8 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "main" ]
+  release:
+    types: [created]
 
 jobs:
   build-and-push:
@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/discord-minecraft-server-bot:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/discord-minecraft-server-bot:${{ github.ref_name }}
