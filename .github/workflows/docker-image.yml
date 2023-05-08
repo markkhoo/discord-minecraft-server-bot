@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/discord-minecraft-server-bot:${{ github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/discord-minecraft-server-bot:latest, ${{ secrets.DOCKERHUB_USERNAME }}/discord-minecraft-server-bot:${{ github.ref_name }}
