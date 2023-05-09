@@ -20,9 +20,32 @@ export const List: Command = {
 
         const res = await rcon.send("whitelist list").catch(console.error);
 
+        if (!res){
+            await interaction.reply({
+                content: "ERROR: Missing response",
+                ephemeral: true,
+            });
+            return;
+        }
+
+        let listOfUsersString: string;
+
+        if (res === "There are no whitelisted players") {
+            listOfUsersString = "There are no players in the allow-list";
+        } else {
+            listOfUsersString = "*Players in the allow-list:* ";
+
+            const listOfUsers = res.match(/(?<=: ).*/)[0].split(", ");
+    
+            listOfUsers.map((user, index) => {
+                listOfUsersString += `\`${user}\``;
+                listOfUsersString += index === listOfUsers.length - 1 ? "" : ", ";
+            });
+        }
+
         await interaction.reply({
             ephemeral: true,
-            content: res ? res : "ERROR: Missing response"
+            content: listOfUsersString
         });
     }
 };

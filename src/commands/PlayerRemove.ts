@@ -61,9 +61,17 @@ export const PlayerRemove: Command = {
 
         const res = await rcon.send(`whitelist remove ${user}`).catch(console.error);
 
+        if (!res){
+            await interaction.reply({
+                content: "ERROR: Missing response",
+                ephemeral: true,
+            });
+            return;
+        }
+
         await interaction.reply({
             ephemeral: true,
-            content: res ? res : "ERROR: Missing response"
+            content: res.replace(/whitelist/gi, "allow-list").replace(user, `**${user}**`).replace(/player/gi, `**${user}**`)
         });
     }
 };
